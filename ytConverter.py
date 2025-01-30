@@ -16,7 +16,8 @@ def convert(url, format, quality):
                 }],
                 'outtmpl': f'audios/%(title)s.%(ext)s', #folder/fileName.extension
                 'quiet': True,
-                'no_warnings': True   
+                'no_warnings': True,
+                'age_limit': 0   
             }
             print("Downloading to 'audios/' folder...")
         else:
@@ -30,9 +31,12 @@ def convert(url, format, quality):
                 }],
                 'outtmpl': f'videos/%(title)s.%(ext)s',
                 'quiet': True,
-                'no_warnings': True   
+                'no_warnings': True,
+                'age_limit': 0  
             }
             print("Downloading to 'videos/' folder...")
+
+        ydl_opts['cookiefile'] = 'cookies.txt'
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
